@@ -3,13 +3,13 @@ Chrome extension that injects ratings into Mubi.com's showing page by using the 
 
 ![](Presentation.gif)
 
-## Installation
+# Installation
 Please note that you might need a google account to run this. 
 
-# Chrome web store
+## Chrome web store
 Coming soon...
 
-# Manual installation
+## Manual installation
 1. Download this repository as a ZIP. 
 2. Unzip the repository. 
 3. Go to [your extension tab](chrome://extensions/) in your Chrome browser
