@@ -1,6 +1,6 @@
 # Ratings-for-Mubi
 Chrome extension that injects ratings into Mubi.com's showing page by using the OMDB API. 
-[]!(Presentation.gif)
+[]!(https://github.com/JulianGlattki/Ratings-for-Mubi/blob/master/Presentation.gif)
 
 # Installation
 Please note that you might need a Google account to run this. 
