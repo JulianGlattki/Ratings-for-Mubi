@@ -1,0 +1,20 @@
+{
+    "name": "Ratings for Mubi", 
+    "version": "1.0", 
+    "manifest_version": 2, 
+    "content_scripts": [
+        {
+            "matches": ["*://*.mubi.com/*/showing*", "*://*.mubi.com/showing*" ], 
+            "js": ["./javascript/content.js"], 
+            "run_at": "document_end"
+        }
+    ], 
+    "browser_action": {
+        "default_popup": "control.html", 
+        "default_title": "Ratings for Mubi"
+    }, 
+    "permissions": [
+        "storage"
+    ]
+}
+

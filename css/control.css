@@ -1,0 +1,368 @@
+html, body{
+    overflow: hidden; 
+    font-family: Montserrat, DejaVu Sans, Verdana, sans‑serif;
+}
+body {
+    min-height: 400px;
+    min-width: 280px; 
+    margin: 0; 
+    background-color: #faf9f9;
+}
+
+a:visited {
+    color: black; 
+}
+/* -------------------------------------------------------------------------- */
+/*                               general layout                               */
+/* -------------------------------------------------------------------------- */
+.headerContainer {
+    height: 15%;
+    width: 100%; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black; 
+}
+
+.bodyContainer {
+    height: 72.5%;
+    width: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.footer {
+    height: 12.5%; 
+    width: 100%; 
+    position: relative; 
+    display: flex; 
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden; 
+    box-sizing: border-box;
+    border-top: 1px solid black;    
+    background-color: #faf9f9;
+}
+
+/* ----------------------- svg stuff of footer/tabbar ----------------------- */
+.footer label {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer label::before {
+    content: "";
+    height: 4px;
+    width: 4px;
+    border-radius: 0% 100% 50% 50% / 0% 50% 50% 100%;
+    transform: scale(1, 1) rotate(45deg);
+    transform-origin: 50% 50%;
+    background: white;
+    display: block;
+    position: absolute;
+    top: -30px;
+}
+
+.footer label svg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.footer label svg .icon {
+    fill: grey;
+}
+
+.footer label svg .icon-border {
+    fill: #FFFFFF;
+    opacity: 0;
+}
+
+.footer label svg .icon-fill {
+    opacity: 0;
+}
+
+.footer input {
+    display: none;
+}
+.footer input:checked + label::before {
+    animation: drop-animation 0.35s ease-in both;
+}
+.footer input:checked + label svg {
+    animation: stretch-animation 0.5s ease-out 0.3s;
+}
+.footer input:checked + label svg .icon-border {
+    animation: clip-animation-border 0.5s ease 0.3s forwards;
+}
+.footer input:checked + label svg .icon-fill {
+    animation: clip-animation 0.5s ease 0.3s forwards;
+}
+
+@keyframes stretch-animation {
+    25% {
+        transform: scale3d(0.9, 1.2, 1);
+        margin-top: 10px;
+   }
+    75% {
+        transform: scale3d(1.1, 0.95, 1);
+   }
+}
+@keyframes drop-animation {
+    70% {
+        transform: scale(1, 2) rotate(45deg);
+        top: -7px;
+   }
+    100% {
+        transform: scale(1.5, 0.5) rotate(45deg);
+        top: 3px;
+   }
+}
+@keyframes clip-animation {
+    from {
+        opacity: 1;
+        clip-path: circle(0% at 50% -20%);
+   }
+    to {
+        opacity: 1;
+        clip-path: circle(110% at top);
+   }
+}
+@keyframes clip-animation-border {
+    from {
+        opacity: 1;
+        clip-path: circle(20% at 50% -20%);
+   }
+    to {
+        opacity: 1;
+        clip-path: circle(130% at top);
+   }
+}
+
+/* --------------------- svg stuff of footer/tabbar END --------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                             general layout end                             */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                            notSet/set tab (home)                           */
+/* -------------------------------------------------------------------------- */
+.set, .notSet {
+    width: 100%; 
+    height: 100%; 
+    padding: 15px; 
+}
+
+.notSet .setApiKey, .set .changeApiKeyButton{
+    color: black !important;
+    text-transform: uppercase;
+    background: #ffffff;
+    border: 4px solid #488b8f !important;
+    padding: 20px; 
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.5s ease 0s;
+}
+
+.notSet .setApiKey:hover, .set .changeApiKeyButton:hover {
+    color: black !important;
+    border-radius: 50px;
+    border-color: #488b8f !important; /* might change this for animation */
+    transition: all 0.5s ease 0s;
+}
+
+/* --------------------------------- not set -------------------------------- */
+.notSet .enterTextContainer {
+    height: 30%; 
+    width: 100%;
+}
+
+.notSet .enterText {
+    height: 100%; 
+    width: 100%; 
+    margin: 0; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+}
+
+.notSet .setApiKeyContainer {
+    height: 40%; 
+    width: 100%; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.notSet .apiKeyInputContainer {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+    height: 20%; 
+    width: 100%;
+
+}
+
+.notSet .apiKeyInput {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 1em;
+    color: black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+}
+.notSet .apiKeyInput::placeholder {
+    color: transparent;
+}
+.notSet .apiKeyInput:placeholder-shown ~ .apiKeyInputLabel {
+    font-size: 1rem;
+    cursor: text;
+    top: 20px;
+}
+.notSet .apiKeyInputLabel {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #9b9b9b;
+}
+.notSet .apiKeyInput:focus {
+    padding-bottom: 6px;
+    font-weight: 700;
+    border-width: 3px;
+    border-image: linear-gradient(to right, #488b8f, #add2c9);
+    border-image-slice: 1;
+}
+.notSet .apiKeyInput:focus ~ .apiKeyInputLabel {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #488b8f;
+    font-weight: 700;
+}
+/* reset input */
+.notSet .apiKeyInput:required, .apiKeyInput:invalid {
+    box-shadow: none;
+}
+/* ------------------------------- not set end ------------------------------ */
+
+/* ----------------------------------- set ---------------------------------- */
+
+.set .setText {
+    font-size: 18px;
+    height: 50%; 
+    width: 100%; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.set .changeApiKeyContainer {
+    display: flex;
+    justify-content: center; 
+}
+
+/* --------------------------------- set end -------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                          notSet/set tab (home) END                         */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                    info                                    */
+/* -------------------------------------------------------------------------- */
+.info {
+    height: 100%; 
+    width: 100%; 
+}
+.info .infoHeader {
+    font-size: 18px;
+    height: 20%; 
+    width: 100%; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    text-decoration: underline;
+}
+.info .infoList {
+    font-size: 18px;
+    height: 80%; 
+    width: 80%; 
+    display: block; 
+    margin: 0; 
+}
+.info .infoList li {
+    word-wrap: break-word; 
+}
+/* -------------------------------------------------------------------------- */
+/*                                  info end                                  */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                   credits                                  */
+/* -------------------------------------------------------------------------- */
+
+.credits {
+    height: 100%; 
+    width: 100%; 
+}
+
+.creditsHeader {
+    height: 15%; 
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.creditsImage {
+    height: 55%; 
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.creditsName {
+    height: 20%; 
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.creditIcons {
+    height: 5%; 
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 10px;
+}
+
+
+
+
+
