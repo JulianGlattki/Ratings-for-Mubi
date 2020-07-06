@@ -20,7 +20,6 @@ async function fetchAllRatings(api) {
 
     for(let movieLink of movieLinks) {
         let movieName = cutMovieLink(movieLink); 
-        console.log(movieName);
         let ratings = await fetchRatings(movieName, api); 
         allRatings[movieName] = ratings; 
         injectionCycle(); 
@@ -28,7 +27,6 @@ async function fetchAllRatings(api) {
 
     for (let movieLink of loadedMovieLinks) {
         let movieName = cutMovieLink(movieLink); 
-        console.log(movieName);
         let ratings = await fetchRatings(movieName, api); 
         allRatings[movieName] = ratings; 
         injectionCycle(); 
@@ -51,14 +49,11 @@ function injectionCycle() {
 
     for (let movieLink of movieLinks) {
         let movieName = cutMovieLink(movieLink); 
-        console.log(movieName);
-        console.log(allRatings);
         if (!document.getElementById("mubiChromeExtension-" +  movieName)) {
             let notFound = document.getElementById("mubiChromeExtension-" +  movieName + "-notFound");
             if (notFound) notFound.remove(); 
             if (movieName in allRatings) {
                 let ratings = allRatings[movieName]; 
-                console.log(movieName + "---" + ratings);
                 let ratingsElement = createMovieRatingsElement(movieName, ratings);
         
                 let placeToInjectRatings = movieLink.parentElement.parentElement.parentElement.parentElement.firstChild.firstChild;
@@ -82,7 +77,7 @@ function createMovieRatingsElement(movieName, ratings) {
 
     let ratingElementStyle = "font-size: 18px; font-family: DMSans,Helvetica,Arial,Lucida Grande,sans-serif; color: white";
 
-    if (ratings && ratings != "loading") {
+    if (ratings && ratings.length > 0 && ratings != "loading") {
         for(let rating of ratings) {
             let ratingElement = document.createElement('span');  
             ratingElement.setAttribute("style", ratingElementStyle);
